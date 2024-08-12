@@ -26,10 +26,10 @@
             return mv.client(originalRequest)
           }
         }
-        if (error.response.status === 500 && refresh) {
+        if (error.response.status === 500) {
           globalStore.notification('SUNUCU KAYNAKLI HATA. HATA KODU : 500', 'error', 3000, true)
         }
-        if (error.response.status === 408 && refresh) {
+        if (error.response.status === 408) {
           globalStore.notification('İSTEK TIMEOUT NEDENİYLE CEVAPLANMADI. HATA KODU:408', 'error', 3000, true)
         }
 
