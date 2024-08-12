@@ -6,6 +6,7 @@
       async error => {
         let mv = this
         let refresh = localStorage.getItem('refresh-token')
+        let globalStore = useGlobal()
         if (error.response.status === 401 && refresh) {
           const originalRequest = error.config
           let res = await this.refreshToken()
@@ -26,11 +27,9 @@
           }
         }
         if (error.response.status === 500 && refresh) {
-          let globalStore = useGlobal()
           globalStore.notification('SUNUCU KAYNAKLI HATA. HATA KODU : 500', 'error', 3000, true)
         }
         if (error.response.status === 408 && refresh) {
-          let globalStore = useGlobal()
           globalStore.notification('İSTEK TIMEOUT NEDENİYLE CEVAPLANMADI. HATA KODU:408', 'error', 3000, true)
         }
 
